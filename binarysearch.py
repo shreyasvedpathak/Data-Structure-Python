@@ -1,6 +1,5 @@
 import math
 
-
 def bs_itr(A, n, key):
     low = 0
     high = n - 1
