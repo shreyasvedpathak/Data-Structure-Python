@@ -1,3 +1,5 @@
+import time
+
 def selection(A):
     """
     Algo name: Selection Sort
@@ -14,7 +16,7 @@ def selection(A):
             if A[j] < A[position]:
                 position = j
         A[i], A[position] = A[position], A[i]
-    print("Sorted using Selection Sort: ", A)
+    
 
 ###############################################################
 
@@ -36,8 +38,6 @@ def insertion(A):
             A[position] = A[position - 1]
             position = position - 1
         A[position] = cvalue
-    
-    print("Sorted using Insertion Sort: ", A)
 
 ###############################################################
 
@@ -55,7 +55,7 @@ def bubble(A):
         for i in range(0, p):
             if A[i] > A[i + 1]:
                 A[i], A[i+1] = A[i+1], A[i]
-    print("Sorted using Bubble Sort: ", A)
+
 
 ###############################################################
 
@@ -81,7 +81,6 @@ def shell(A):
             A[j+gap] = temp
             i = i + 1
         gap = gap // 2
-    print("Sorted using Shell Sort: ", A)
 
 ###############################################################
 
@@ -97,11 +96,9 @@ def merge(A, l, m, r):
 
     returns Sorted partial array A
     """
-
-    i = l
-    j = m + 1 
-    k = l
+    i = l; j = m + 1; k = l
     B = [0] * (r + 1)
+
     while i <= m and j <= r:
         if A[i] < A[j]:
             B[k] = A[i]
@@ -113,12 +110,10 @@ def merge(A, l, m, r):
 
     while i <= m:
         B[k] = A[i]
-        i = i + 1
-        k = k + 1
+        i = i + 1; k = k + 1
     while j <= r:
         B[k] = A[j]
-        j = j + 1
-        k = k + 1
+        j = j + 1; k = k + 1
     for x in range(l, r + 1):
         A[x] = B[x]
 
@@ -141,29 +136,98 @@ def mergesort(A, left, right):
 
 
 ###############################################################
+
+def partition(A, low, high):
+    pivot = A[low]
+    i = low + 1; j = high
+
+    while True:
+        while i <= j and A[i] <= pivot:
+            i = i + 1
+        while i <= j and A[i] > pivot:
+            j = j - 1
+
+        if i <= j:
+            A[i], A[j] = A[j], A[i]
+        else:
+            break
+    A[low], A[j] = A[j], A[low]
+    return j
+
+def quicksort(A, low, high):
+    if low < high:
+        p = partition(A, low, high)
+        quicksort(A, low, p - 1)
+        quicksort(A, p + 1, high)
+
+###############################################################
 def switch_case(choice):
+
     if choice == 1:
-        selection(A),
+        start = time.time()
+        selection(A)
+        end = time.time()
+        print("Sorted using Selection Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
     elif choice == 2: 
+        start = time.time()
         insertion(A)
+        end = time.time()
+        print("Sorted using Insertion Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
     elif choice == 3: 
+        start = time.time()
         bubble(A)
+        end = time.time()
+        print("Sorted using Bubble Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
     elif choice == 4: 
+        start = time.time()
         shell(A)
+        end = time.time()
+        print("Sorted using Shell Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
     elif choice == 5:
+        start = time.time()
         mergesort(A, 0, len(A)-1)
+        end = time.time()
         print("Sorted using Merge Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
+    elif choice == 6:
+        start = time.time()
+        quicksort(A, 0, len(A)-1)
+        end = time.time()
+        print("Sorted using Quick Sort: ", A)
+        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
 
 ###############################################################
 
-A = list(map(int, input("Enter Array elements: ").split()))
+def options():
+    print("Select Sorting Method")
+    print("1. Selection Sort")
+    print("2. Insertion Sort")
+    print("3. Bubble Sort")
+    print("4. Shell Sort")
+    print("5. Merge Sort")
+    print("6. Quick Sort")
+    print("#. Exit")
 
-print("Select Sorting Method")
-print("1. Selection Sort")
-print("2. Insertion Sort")
-print("3. Bubble Sort")
-print("4. Shell Sort")
-print("5. Merge Sort")
+while True:
+    x = input("Enter your own array values? [y/n]: ")
+    if x == 'y':
+        A = list(map(int, input("Enter values: ").split()))
+        options()
+    else:
+        filename = "num.txt"
+        my_file = open(filename, "r")
+        content = my_file.read()
+        A = list(map(int, content.split()))
+        my_file.close()
+        print("Reading values from", filename)
+        options()
 
-choice = int(input("Enter your choice: "))
-switch_case(choice)
+    choice = int(input("Enter your choice: "))
+    if choice != '#': 
+        switch_case(choice)
+    else:
+        break
