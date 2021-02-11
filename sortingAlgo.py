@@ -1,4 +1,5 @@
 import time
+import random
 
 def selection(A):
     """
@@ -134,6 +135,8 @@ def mergesort(A, left, right):
         mergesort(A, mid + 1, right)
         merge(A, left, mid, right) 
 
+def merge_driver(A):
+    mergesort(A, 0, len(A)-1)
 
 ###############################################################
 
@@ -160,45 +163,70 @@ def quicksort(A, low, high):
         quicksort(A, low, p - 1)
         quicksort(A, p + 1, high)
 
-###############################################################
-def switch_case(choice):
+def quick_driver(A):
+    quicksort(A, 0, len(A)-1)
 
-    if choice == 1:
+###############################################################
+def count(A):
+    n = len(A)
+    maxsize = max(A)
+    carray = [0] * (maxsize + 1)
+
+    for i in range(n):
+        carray[A[i]] = carray[A[i]] + 1
+    i = 0; j = 0
+    while i < maxsize + 1:
+        if carray[i] > 0:
+            A[j] = i
+            j = j + 1
+            carray[i] = carray[i] - 1
+        else:
+            i = i + 1
+
+###############################################################
+
+
+def radix(A):
+    n = len(A)
+    maxelement = max(A)
+    digits = len(str(maxelement))
+    l = []
+    bins = [l] * 10
+    for i in range(digits):
+        for j in range(n):
+            e = int((A[j] / pow(10, i)) % 10)
+            if len(bins[e]) > 0:
+                bins[e].append(A[j])
+            else:
+                bins[e] = [A[j]]
+        k = 0
+        for x in range(10):
+            if len(bins[x]) > 0:
+                for y in range(len(bins[x])):
+                    A[k] = bins[x].pop(0)
+                    k = k + 1
+
+
+###############################################################
+
+def timereq(choices, algo_name):
+    for c, name in zip(choices, algo_name):
         start = time.time()
-        selection(A)
+        c(A)
         end = time.time()
-        print("Sorted using Selection Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
-    elif choice == 2: 
-        start = time.time()
-        insertion(A)
-        end = time.time()
-        print("Sorted using Insertion Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
-    elif choice == 3: 
-        start = time.time()
-        bubble(A)
-        end = time.time()
-        print("Sorted using Bubble Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
-    elif choice == 4: 
-        start = time.time()
-        shell(A)
-        end = time.time()
-        print("Sorted using Shell Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
-    elif choice == 5:
-        start = time.time()
-        mergesort(A, 0, len(A)-1)
-        end = time.time()
-        print("Sorted using Merge Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
-    elif choice == 6:
-        start = time.time()
-        quicksort(A, 0, len(A)-1)
-        end = time.time()
-        print("Sorted using Quick Sort: ", A)
-        print('Time required: ', (end - start) * 10 ** 6, "nanoseconds")
+        print('Time taken by', name, ':', (end - start) * 10 ** 6, "nanoseconds")
+
+###############################################################
+
+def switch_case(choice):
+    choices = [selection, insertion, bubble, shell, merge_driver, quick_driver, count, radix]
+    algo_name = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort', 'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort']
+    
+    if choice != 9:
+        choices[choice-1](A)
+        print("Sorted using", algo_name[choice - 1], "\n", A)
+    else:
+        timereq(choices, algo_name)
 
 ###############################################################
 
@@ -210,7 +238,23 @@ def options():
     print("4. Shell Sort")
     print("5. Merge Sort")
     print("6. Quick Sort")
-    print("#. Exit")
+    print('7. Count Sort')
+    print('8. Radix Sort')
+    print('9. Time required by each algorithm')
+    print("0. Exit")
+
+def create_array():
+    limit = int(input("Enter the upper limit for generating the numbers: "))
+    amount = int(input("Enter the amount of numbers you want to generate: "))
+    print("Generating numbers...\n")
+    array = []
+    for i in range(amount):
+        n = random.randint(0, limit)
+        array.append(n)
+
+    return array
+
+###############################################################
 
 while True:
     x = input("Enter your own array values? [y/n]: ")
@@ -218,16 +262,11 @@ while True:
         A = list(map(int, input("Enter values: ").split()))
         options()
     else:
-        filename = "num.txt"
-        my_file = open(filename, "r")
-        content = my_file.read()
-        A = list(map(int, content.split()))
-        my_file.close()
-        print("Reading values from", filename)
+        A = create_array()
         options()
 
     choice = int(input("Enter your choice: "))
-    if choice != '#': 
+    if choice != 0: 
         switch_case(choice)
     else:
         break
