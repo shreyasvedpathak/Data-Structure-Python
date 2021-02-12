@@ -1,6 +1,4 @@
 import os
-from typing import Sized
-
 class _Node:
     __slots__ = '_element', '_link'
 
@@ -8,7 +6,9 @@ class _Node:
         self._element = element
         self._link = link
 
+
 class LinkedList:
+
     def __init__(self):
         self._head = None
         self._tail = None
@@ -19,9 +19,9 @@ class LinkedList:
 
     def isempty(self):
         return self._size == 0
-    
+
     def addLast(self, e):
-        newest = _Node(e,None)
+        newest = _Node(e, None)
 
         if self.isempty():
             self._head = newest
@@ -32,7 +32,6 @@ class LinkedList:
         self._size += 1
 
     def addFirst(self, e):
-
         newest = _Node(e, None)
 
         if self.isempty():
@@ -44,7 +43,6 @@ class LinkedList:
         self._size += 1
 
     def addAnywhere(self, e, index):
-
         newest = _Node(e, None)
 
         i = index - 1
@@ -59,6 +57,58 @@ class LinkedList:
             p._link = newest
         self._size += 1
 
+    def removeFirst(self):
+        if self.isempty():
+            print("List is Empty. Cannot perform deletion operation.")
+            return
+
+        e = self._head._element
+        self._head = self._head._link
+        self._size = self._size - 1
+
+        if self.isempty():
+            self._tail = None
+
+        return e
+
+    def removeLast(self):
+        if self.isempty():
+            print("List is Empty. Cannot perform deletion operation.")
+            return
+
+        p = self._head
+
+        if p._link == None:
+            e = p._element
+            self._head = None
+        else:
+            while p._link._link != None:
+                p = p._link
+            e = p._link._element
+            p._link = None
+            self._tail = p
+
+        self._size = self._size - 1
+        return e
+
+    def removeAnywhere(self, index):
+
+        p = self._head
+        i = index - 1
+
+        if index == 0:
+            return self.removeFirst()
+        elif index == self._size - 1:
+            return self.removeLast()
+        else:
+            for x in range(i):
+                p = p._link
+            e = p._link._element
+            p._link = p._link._link
+
+        self._size -= 1
+        return e
+
     def display(self):
         if self.isempty() == 0:
             p = self._head
@@ -66,8 +116,10 @@ class LinkedList:
                 print(p._element, end='-->')
                 p = p._link
             print("NULL")
+            print(
+                f"Head : {self._head._element}, Tail : {self._tail._element}")
         else:
-            print("List is Empty")
+            print("Empty")
 
     def search(self, key):
         p = self._head
@@ -81,15 +133,19 @@ class LinkedList:
 
 ###############################################################################
 
+
 def options():
-    options_list = ['Add item', 'Add First', 'Add Anywhere', 'Display List', 'Print Size', 'Search', 'Exit']
+    options_list = ['Add Last', 'Add First', 'Add Anywhere',
+                    'Remove First', 'Remove Last', 'Remove Anywhere',
+                    'Display List', 'Print Size', 'Search', 'Exit']
 
     print("MENU")
     for i, option in enumerate(options_list):
-        print(f'{i + 1}. {option}')    
+        print(f'{i + 1}. {option}')
 
     choice = int(input("Enter choice: "))
     return choice
+
 
 def switch_case(choice):
 
@@ -98,31 +154,47 @@ def switch_case(choice):
         elem = int(input("Enter Item: "))
         L.addLast(elem)
         print("Added Item at Last!\n\n")
+
     elif choice == 2:
         elem = int(input("Enter Item: "))
         L.addFirst(elem)
         print("Added Item at First!\n\n")
+
     elif choice == 3:
         elem = int(input("Enter Item: "))
         index = int(input("Enter Index: "))
         L.addAnywhere(elem, index)
         print(f"Added Item at index {index}!\n\n")
+
     elif choice == 4:
+        print("Removed Element from First:", L.removeFirst())
+
+    elif choice == 5:
+        print("Removed Element from last:", L.removeLast())
+
+    elif choice == 6:
+        index = int(input("Enter Index: "))
+        L.removeAnywhere(index)
+        print(f"Removed Item at index {index}!\n\n")
+    elif choice == 7:
         print("List: ", end='')
         L.display()
         print("\n")
-    elif choice == 5:
+
+    elif choice == 8:
         print("Size:", len(L))
         print("\n")
-    elif choice == 6:
+
+    elif choice == 9:
         key = int(input("Enter item to search: "))
         if L.search(key) >= 0:
             print(f"Item {key} found at index position {L.search(key)}\n\n")
         else:
             print("Item not in the list\n\n")
 
-    elif choice == 7:
-        exit
+    elif choice == 10:
+        import sys
+        sys.exit()
 
 
 L = LinkedList()
