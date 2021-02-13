@@ -1,4 +1,6 @@
 import os
+
+
 class _Node:
     '''
     Creates a Node with two fields:
@@ -6,6 +8,7 @@ class _Node:
     2. link (accesed using ._link)
     '''
     __slots__ = '_element', '_link'
+
     def __init__(self, element, link):
         '''
         Initialses _element and _link with element and link respectively.
@@ -13,14 +16,16 @@ class _Node:
         self._element = element
         self._link = link
 
+
 class CicularLL:
     '''
     Consists of member funtions to perform different
     operations on the circular linked list.
     '''
+
     def __init__(self):
         '''
-        Initialses head, tail and size with None, None and 0 respectively.
+        Initialises head, tail and size with None, None and 0 respectively.
         '''
         self._head = None
         self._tail = None
@@ -67,7 +72,6 @@ class CicularLL:
         else:
             self._tail._link = newest
             self._head = newest
-
         self._size += 1
 
     def addAnywhere(self, e, index):
@@ -90,8 +94,7 @@ class CicularLL:
             newest._link = p._link
             p._link = newest
             print(f"Added Item at index {index}!\n\n")
-
-        self._size += 1
+            self._size += 1
 
     def removeFirst(self):
         '''
@@ -138,7 +141,6 @@ class CicularLL:
         if index >= self._size:
             print(
                 f"Index out of range. It should be between 0 - {self._size - 1}")
-            return 
         elif self.isempty():
             print("List is Empty")
             return
@@ -152,8 +154,7 @@ class CicularLL:
                 p = p._link
             e = p._link._element
             p._link = p._link._link
-
-        self._size -= 1
+            self._size -= 1
         return e
 
     def display(self):
@@ -172,6 +173,7 @@ class CicularLL:
             print("Empty")
 
 #########################################################################
+
 
 def options():
     '''
@@ -229,6 +231,7 @@ def switch_case(choice):
         sys.exit()
 
 ###############################################################################
+
 
 CL = CicularLL()
 while True:

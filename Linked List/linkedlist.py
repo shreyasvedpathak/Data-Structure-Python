@@ -1,4 +1,6 @@
 import os
+
+
 class _Node:
     '''
     Creates a Node with two fields:
@@ -6,6 +8,7 @@ class _Node:
     2. link (accesed using ._link)
     '''
     __slots__ = '_element', '_link'
+
     def __init__(self, element, link):
         '''
         Initialses _element and _link with element and link respectively.
@@ -13,11 +16,13 @@ class _Node:
         self._element = element
         self._link = link
 
+
 class LinkedList:
     '''
     Consists of member funtions to perform different
     operations on the linked list.
     '''
+
     def __init__(self):
         '''
         Initialses head, tail and size with None, None and 0 respectively.
@@ -178,6 +183,7 @@ class LinkedList:
 
 ###############################################################################
 
+
 def options():
     '''
     Prints Menu for operations
@@ -192,6 +198,7 @@ def options():
 
     choice = int(input("Enter choice: "))
     return choice
+
 
 def switch_case(choice):
     '''
@@ -243,6 +250,7 @@ def switch_case(choice):
         sys.exit()
 
 ###############################################################################
+
 
 L = LinkedList()
 while True:
