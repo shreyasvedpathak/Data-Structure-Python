@@ -1,6 +1,5 @@
 import os
 
-from typing_extensions import TypeAlias
 
 class _Node:
     __slots__ = '_element', '_link'
@@ -9,8 +8,8 @@ class _Node:
         self._element = element
         self._link = link
 
-class CicularLL:
 
+class CicularLL:
     def __init__(self):
         self._head = None
         self._tail = None
@@ -31,23 +30,94 @@ class CicularLL:
         else:
             newest._link = self._tail._link
             self._tail._link = newest
-        
+
         self._tail = newest
         self._size += 1
-    
+
     def addFirst(self, e):
         newest = _Node(e, None)
 
+        newest._link = self._head
         if self.isempty():
-            newest._link = self._head
             self._head = newest
             self._tail = newest
         else:
-            newest._link = self._head
             self._tail._link = newest
             self._head = newest
+
         self._size += 1
-            
+
+    def addAnywhere(self, e, index):
+        newest = _Node(e, None)
+        if index >= self._size:
+            print(
+                f"Index out of range. It should be between 0 - {self._size - 1}")
+        elif self.isempty():
+            print("List was empty, item will be added in the End.")
+            self.addLast(e)
+        elif index == 0:
+            self.addFirst(e)
+        else:
+            p = self._head
+            for _ in range(index - 1):
+                p = p._link
+            newest._link = p._link
+            p._link = newest
+            print(f"Added Item at index {index}!\n\n")
+
+        self._size += 1
+
+    def removeFirst(self):
+        if self.isempty():
+            print("List is Empty")
+            return
+
+        e = self._head._element
+        self._head = self._head._link
+        self._tail._link = self._head
+        self._size -= 1
+        return e
+
+    def removeLast(self):
+        if self.isempty():
+            print("List is Empty")
+            return
+
+        p = self._head  # you can also use self._tail._link as it also points to head node
+        if p._link == self._head:
+            return self.removeFirst()
+        else:
+            while p._link._link != self._head:
+                p = p._link
+            e = p._link._element
+            p._link = self._head
+            self._tail = p
+
+        self._size -= 1
+        return e
+
+    def removeAnywhere(self, index):
+
+        if index >= self._size:
+            print(
+                f"Index out of range. It should be between 0 - {self._size - 1}")
+            return 
+        elif self.isempty():
+            print("List is Empty")
+            return
+        elif index == 0:
+            return self.removeFirst()
+        elif index == self._size - 1:
+            return self.removeLast()
+        else:
+            p = self._head
+            for _ in range(index - 1):
+                p = p._link
+            e = p._link._element
+            p._link = p._link._link
+
+        self._size -= 1
+        return e
 
     def display(self):
         if self.isempty() == 0:
@@ -78,7 +148,6 @@ def options():
 
 
 def switch_case(choice):
-
     os.system('cls')
     if choice == 1:
         elem = int(input("Enter Item: "))
@@ -94,7 +163,6 @@ def switch_case(choice):
         elem = int(input("Enter Item: "))
         index = int(input("Enter Index: "))
         CL.addAnywhere(elem, index)
-        print(f"Added Item at index {index}!\n\n")
 
     elif choice == 4:
         print("Removed Element from First:", CL.removeFirst())
@@ -104,8 +172,8 @@ def switch_case(choice):
 
     elif choice == 6:
         index = int(input("Enter Index: "))
-        CL.removeAnywhere(index)
-        print(f"Removed Item at index {index}!\n\n")
+        print(f"Removed Item: {CL.removeAnywhere(index)} !\n\n")
+
     elif choice == 7:
         print("List: ", end='')
         CL.display()
@@ -115,6 +183,7 @@ def switch_case(choice):
         import sys
         sys.exit()
 
+###############################################################################
 
 CL = CicularLL()
 while True:
