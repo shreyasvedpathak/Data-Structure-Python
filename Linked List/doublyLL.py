@@ -105,7 +105,7 @@ class DoublyLL:
         Returns the removed element.
         '''
         if self.isempty():
-            print("List is already empty")
+            print('List is already empty')
             return
         e = self._head._element
         self._head = self._head._link
