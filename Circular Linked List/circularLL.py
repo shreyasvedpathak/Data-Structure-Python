@@ -1,13 +1,11 @@
 import os
 
-
 class _Node:
     __slots__ = '_element', '_link'
 
     def __init__(self, element, link):
         self._element = element
         self._link = link
-
 
 class CicularLL:
     def __init__(self):

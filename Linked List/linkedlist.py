@@ -1,26 +1,47 @@
 import os
 class _Node:
+    '''
+    Creates a Node with two fields:
+    1. element (accesed using ._element)
+    2. link (accesed using ._link)
+    '''
     __slots__ = '_element', '_link'
-
     def __init__(self, element, link):
+        '''
+        Initialses _element and _link with element and link respectively.
+        '''
         self._element = element
         self._link = link
 
-
 class LinkedList:
-
+    '''
+    Consists of member funtions to perform different
+    operations on the linked list.
+    '''
     def __init__(self):
+        '''
+        Initialses head, tail and size with None, None and 0 respectively.
+        '''
         self._head = None
         self._tail = None
         self._size = 0
 
     def __len__(self):
+        '''
+        Returns length of linked list
+        '''
         return self._size
 
     def isempty(self):
+        '''
+        Returns True if linked list is empty, otherwise False.
+        '''
         return self._size == 0
 
     def addLast(self, e):
+        '''
+        Adds the passed element at the end of the linked list.
+        '''
         newest = _Node(e, None)
 
         if self.isempty():
@@ -32,6 +53,9 @@ class LinkedList:
         self._size += 1
 
     def addFirst(self, e):
+        '''
+        Adds the passed element at the beginning of the linked list.
+        '''
         newest = _Node(e, None)
 
         if self.isempty():
@@ -43,6 +67,9 @@ class LinkedList:
         self._size += 1
 
     def addAnywhere(self, e, index):
+        '''
+        Adds the passed element at the passed index position of the linked list.
+        '''
         newest = _Node(e, None)
 
         i = index - 1
@@ -55,9 +82,14 @@ class LinkedList:
                 p = p._link
             newest._link = p._link
             p._link = newest
+            print(f"Added Item at index {index}!\n\n")
         self._size += 1
 
     def removeFirst(self):
+        '''
+        Removes element from the beginning of the linked list.
+        Returns the removed element.
+        '''
         if self.isempty():
             print("List is Empty. Cannot perform deletion operation.")
             return
@@ -72,12 +104,15 @@ class LinkedList:
         return e
 
     def removeLast(self):
+        '''
+        Removes element from the end of the linked list.
+        Returns the removed element.
+        '''
         if self.isempty():
             print("List is Empty. Cannot perform deletion operation.")
             return
 
         p = self._head
-
         if p._link == None:
             e = p._element
             self._head = None
@@ -92,7 +127,10 @@ class LinkedList:
         return e
 
     def removeAnywhere(self, index):
-
+        '''
+        Removes element from the passed index position of the linked list.
+        Returns the removed element.
+        '''
         p = self._head
         i = index - 1
 
@@ -110,6 +148,9 @@ class LinkedList:
         return e
 
     def display(self):
+        '''
+        Utility function to display the linked list.
+        '''
         if self.isempty() == 0:
             p = self._head
             while p:
@@ -122,6 +163,10 @@ class LinkedList:
             print("Empty")
 
     def search(self, key):
+        '''
+        Searches for the passed element in the linked list.
+        Returns the index position if found, else -1.
+        '''
         p = self._head
         index = 0
         while p:
@@ -133,8 +178,10 @@ class LinkedList:
 
 ###############################################################################
 
-
 def options():
+    '''
+    Prints Menu for operations
+    '''
     options_list = ['Add Last', 'Add First', 'Add Anywhere',
                     'Remove First', 'Remove Last', 'Remove Anywhere',
                     'Display List', 'Print Size', 'Search', 'Exit']
@@ -148,7 +195,9 @@ def options():
 
 
 def switch_case(choice):
-
+    '''
+    Switch Case for operations
+    '''
     os.system('cls')
     if choice == 1:
         elem = int(input("Enter Item: "))
@@ -164,7 +213,6 @@ def switch_case(choice):
         elem = int(input("Enter Item: "))
         index = int(input("Enter Index: "))
         L.addAnywhere(elem, index)
-        print(f"Added Item at index {index}!\n\n")
 
     elif choice == 4:
         print("Removed Element from First:", L.removeFirst())
@@ -174,8 +222,7 @@ def switch_case(choice):
 
     elif choice == 6:
         index = int(input("Enter Index: "))
-        L.removeAnywhere(index)
-        print(f"Removed Item at index {index}!\n\n")
+        print(f"Removed Item: {L.removeAnywhere(index)} !\n\n")
     elif choice == 7:
         print("List: ", end='')
         L.display()
@@ -196,6 +243,7 @@ def switch_case(choice):
         import sys
         sys.exit()
 
+###############################################################################
 
 L = LinkedList()
 while True:
