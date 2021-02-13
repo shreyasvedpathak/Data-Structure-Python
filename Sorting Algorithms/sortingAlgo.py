@@ -255,7 +255,7 @@ def options():
     '''
     options_list = ['Selection Sort', 'Insertion Sort', 'Bubble Sort',
                  'Shell Sort', 'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort',
-                 'Exit']
+                 'Time Required', 'Exit']
     print("MENU")
     for i, option in enumerate(options_list):
         print(f'{i + 1}. {option}')
@@ -282,7 +282,7 @@ while True:
         options()
 
     choice = int(input("Enter your choice: "))
-    if choice != 0: 
+    if choice != 10: 
         switch_case(choice)
     else:
         break
