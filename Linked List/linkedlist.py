@@ -193,7 +193,6 @@ def options():
     choice = int(input("Enter choice: "))
     return choice
 
-
 def switch_case(choice):
     '''
     Switch Case for operations
