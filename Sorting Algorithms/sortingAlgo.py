@@ -17,7 +17,6 @@ def selection(A):
             if A[j] < A[position]:
                 position = j
         A[i], A[position] = A[position], A[i]
-    
 
 ###############################################################
 
@@ -56,7 +55,6 @@ def bubble(A):
         for i in range(0, p):
             if A[i] > A[i + 1]:
                 A[i], A[i+1] = A[i+1], A[i]
-
 
 ###############################################################
 
@@ -158,6 +156,15 @@ def partition(A, low, high):
     return j
 
 def quicksort(A, low, high):
+    """
+    Algo name: Quick Sort
+    UNSTABLE
+    input:
+    A -- Array
+    left -- first index position of the array(0 in first call)
+    right -- last index position of the array(len(A) - 1 in the first call)
+
+    """
     if low < high:
         p = partition(A, low, high)
         quicksort(A, low, p - 1)
@@ -185,8 +192,14 @@ def count(A):
 
 ###############################################################
 
-
 def radix(A):
+    """
+    Algo name: Radix Sort
+    STABLE
+    input:
+    A -- Array
+    returns sorted array
+    """
     n = len(A)
     maxelement = max(A)
     digits = len(str(maxelement))
@@ -206,10 +219,12 @@ def radix(A):
                     A[k] = bins[x].pop(0)
                     k = k + 1
 
-
 ###############################################################
 
 def timereq(choices, algo_name):
+    """
+    Utility function to calculate time required(in nanoseconds) to sort the given array.
+    """
     for c, name in zip(choices, algo_name):
         start = time.time()
         c(A)
@@ -217,6 +232,33 @@ def timereq(choices, algo_name):
         print('Time taken by', name, ':', (end - start) * 10 ** 6, "nanoseconds")
 
 ###############################################################
+
+def create_array():
+    """
+    Return randomly generates an integer array having limit as upper limit
+    and amount as length of the array
+    """
+    limit = int(input("Enter the upper limit for generating the numbers: "))
+    amount = int(input("Enter the amount of numbers you want to generate: "))
+    print("Generating numbers...\n")
+    array = []
+    for i in range(amount):
+        n = random.randint(0, limit)
+        array.append(n)
+    return array
+
+###############################################################
+
+def options():
+    '''
+    Prints Menu for operations
+    '''
+    options_list = ['Selection Sort', 'Insertion Sort', 'Bubble Sort',
+                 'Shell Sort', 'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort',
+                 'Exit']
+    print("MENU")
+    for i, option in enumerate(options_list):
+        print(f'{i + 1}. {option}')
 
 def switch_case(choice):
     choices = [selection, insertion, bubble, shell, merge_driver, quick_driver, count, radix]
@@ -227,32 +269,6 @@ def switch_case(choice):
         print("Sorted using", algo_name[choice - 1], "\n", A)
     else:
         timereq(choices, algo_name)
-
-###############################################################
-
-def options():
-    print("Select Sorting Method")
-    print("1. Selection Sort")
-    print("2. Insertion Sort")
-    print("3. Bubble Sort")
-    print("4. Shell Sort")
-    print("5. Merge Sort")
-    print("6. Quick Sort")
-    print('7. Count Sort')
-    print('8. Radix Sort')
-    print('9. Time required by each algorithm')
-    print("0. Exit")
-
-def create_array():
-    limit = int(input("Enter the upper limit for generating the numbers: "))
-    amount = int(input("Enter the amount of numbers you want to generate: "))
-    print("Generating numbers...\n")
-    array = []
-    for i in range(amount):
-        n = random.randint(0, limit)
-        array.append(n)
-
-    return array
 
 ###############################################################
 
