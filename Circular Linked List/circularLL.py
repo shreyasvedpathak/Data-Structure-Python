@@ -1,25 +1,47 @@
 import os
-
 class _Node:
+    '''
+    Creates a Node with two fields:
+    1. element (accesed using ._element)
+    2. link (accesed using ._link)
+    '''
     __slots__ = '_element', '_link'
-
     def __init__(self, element, link):
+        '''
+        Initialses _element and _link with element and link respectively.
+        '''
         self._element = element
         self._link = link
 
 class CicularLL:
+    '''
+    Consists of member funtions to perform different
+    operations on the circular linked list.
+    '''
     def __init__(self):
+        '''
+        Initialses head, tail and size with None, None and 0 respectively.
+        '''
         self._head = None
         self._tail = None
         self._size = 0
 
     def __len__(self):
+        '''
+        Returns length of linked list
+        '''
         return self._size
 
     def isempty(self):
+        '''
+        Returns True if circular linked list is empty, otherwise False.
+        '''
         return self._size == 0
 
     def addLast(self, e):
+        '''
+        Adds the passed element at the end of the circular linked list.
+        '''
         newest = _Node(e, None)
 
         if self.isempty():
@@ -33,6 +55,9 @@ class CicularLL:
         self._size += 1
 
     def addFirst(self, e):
+        '''
+        Adds the passed element at the beginning of the circular linked list.
+        '''
         newest = _Node(e, None)
 
         newest._link = self._head
@@ -46,6 +71,9 @@ class CicularLL:
         self._size += 1
 
     def addAnywhere(self, e, index):
+        '''
+        Adds the passed element at the passed index position of the circular linked list.
+        '''
         newest = _Node(e, None)
         if index >= self._size:
             print(
@@ -66,6 +94,10 @@ class CicularLL:
         self._size += 1
 
     def removeFirst(self):
+        '''
+        Removes element from the beginning of the circular linked list.
+        Returns the removed element.
+        '''
         if self.isempty():
             print("List is Empty")
             return
@@ -77,6 +109,10 @@ class CicularLL:
         return e
 
     def removeLast(self):
+        '''
+        Removes element from the end of the circular linked list.
+        Returns the removed element.
+        '''
         if self.isempty():
             print("List is Empty")
             return
@@ -95,7 +131,10 @@ class CicularLL:
         return e
 
     def removeAnywhere(self, index):
-
+        '''
+        Removes element from the passed index position of the circular linked list.
+        Returns the removed element.
+        '''
         if index >= self._size:
             print(
                 f"Index out of range. It should be between 0 - {self._size - 1}")
@@ -118,6 +157,9 @@ class CicularLL:
         return e
 
     def display(self):
+        '''
+        Utility function to display the circular linked list.
+        '''
         if self.isempty() == 0:
             p = self._head
             while True:
@@ -131,8 +173,10 @@ class CicularLL:
 
 #########################################################################
 
-
 def options():
+    '''
+    Prints Menu for operations
+    '''
     options_list = ['Add Last', 'Add First', 'Add Anywhere',
                     'Remove First', 'Remove Last', 'Remove Anywhere',
                     'Display List', 'Exit']
@@ -146,6 +190,9 @@ def options():
 
 
 def switch_case(choice):
+    '''
+    Switch Case for operations
+    '''
     os.system('cls')
     if choice == 1:
         elem = int(input("Enter Item: "))
