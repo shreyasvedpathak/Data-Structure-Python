@@ -11,7 +11,7 @@
 
 ## Data Structures
 
-[**Description**](Linked%20List/README.md)
+[**Description**](Linked%20List/)
 
 1. [Linked List](/Linked%20List/linkedlist.py)
 2. [Circular Linked List](Linked%20List/circularLL.py)
