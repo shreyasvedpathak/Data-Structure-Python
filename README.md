@@ -2,23 +2,29 @@
 
 ## Algorithms
 
-### Searching Algorithms
+### 1. Searching Algorithms
 
 - [Binary Search - both Recursive and Iterative Approach](Searching%20Algorithm/binarysearch.py)
 
-### Sorting Algorithms
+### 2. Sorting Algorithms
 
-#### [Index](Sorting%20Algorithms/README.md)
+Find the detailed description on [Index](Sorting%20Algorithms/) page.
 
 - [Sorting Algorithms Code](Sorting%20Algorithms/sortingAlgo.py)
 - [Random Numbers for Input](Sorting%20Algorithms/num.txt)
 
 ## Data Structures
 
-### Linked Lists
+### 1. Linked Lists
 
 Find the detailed description on operations performed [here.](Linked%20List/)
 
 1. [Linear Linked List](Linked%20List/linkedlist.py)
 2. [Circular Linked List](Linked%20List/circularLL.py)
 3. [Doubly Linked List](Linked%20List/doublyLL.py)
+
+### 2. Stack
+
+1. [Stack using inbuilt Python List](Stacks/stack.py)
+2. [Stack using Linked List](Stacks/stackLL.py)
+3. 
