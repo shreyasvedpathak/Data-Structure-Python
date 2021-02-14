@@ -27,4 +27,3 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 
 1. [Stack using inbuilt Python List](Stacks/stack.py)
 2. [Stack using Linked List](Stacks/stackLL.py)
-3. 
