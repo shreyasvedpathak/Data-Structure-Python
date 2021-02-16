@@ -233,7 +233,8 @@ def switch_case(choice):
 ###############################################################################
 
 
-CL = CicularLL()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    CL = CicularLL()
+    while True:
+        choice = options()
+        switch_case(choice)

@@ -1,17 +1,17 @@
 import os
-
+import sys
+sys.path.append(".")
+from Queues.queuesLL import QueueLL
 
 class _Node:
     '''
     Initialises node with the passed arguments, None if no arguments are passed.
     '''
     __slots__ = '_element', '_left', '_right'
-
     def __init__(self, element, left=None, right=None):
         self._element = element
         self._left = left
         self._right = right
-
 
 class BinaryTree:
     def __init__(self):
@@ -30,7 +30,7 @@ class BinaryTree:
         position = input(
             f"Add node on the Left of {node._element} ? [y/n]: ")
         if position == 'y':
-            nodeData = int(input("Enter data for node: "))
+            nodeData = input("Enter data for node: ")
             curr = _Node(nodeData)
             node._left = curr
             self.createTree(curr)
@@ -39,7 +39,7 @@ class BinaryTree:
         position = input(
             f"Add node on the Right of {node._element} ? [y/n]: ")
         if position == 'y':
-            nodeData = int(input("Enter data for node: "))
+            nodeData = input("Enter data for node: ")
             curr = _Node(nodeData)
             node._right = curr
             self.createTree(curr)
@@ -48,7 +48,7 @@ class BinaryTree:
         '''
         Function to create Root node.
         '''
-        rootData = int(input("Enter data for Root: "))
+        rootData = input("Enter data for Root: ")
         self._root = _Node(rootData)
         self.createTree(self._root)
 
@@ -79,6 +79,21 @@ class BinaryTree:
             self.postorder(troot._right)
             print(troot._element, end=" ")
 
+    def levelorder(self):
+        Q = QueueLL()
+        t = self._root
+        print(t._element, end=" ")
+        Q.enqueue(t)
+
+        while not Q.isempty():
+            t = Q.dequeue()
+            if t._left:
+                print(t._left._element, end=" ")
+                Q.enqueue(t._left)
+            if t._right:
+                print(t._right._element, end=" ")
+                Q.enqueue(t._right)
+
 ###############################################################################
 
 
@@ -87,7 +102,7 @@ def options():
     Prints Menu for operations
     '''
     options_list = ['Create Tree', 'Inorder', 'Preorder',
-                    'Postorder', 'Exit']
+                    'Postorder', 'Level Order', 'Exit']
 
     print("\nMENU")
     for i, option in enumerate(options_list):
@@ -116,8 +131,10 @@ def switch_case(choice):
     elif choice == 4:
         print("Postorder Traversal:")
         bt.postorder(bt._root)
-
     elif choice == 5:
+        print("Level Order Traversal:")
+        bt.levelorder()
+    elif choice == 6:
         import sys
         sys.exit()
 

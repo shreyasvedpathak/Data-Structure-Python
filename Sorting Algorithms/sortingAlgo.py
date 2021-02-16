@@ -270,19 +270,20 @@ def switch_case(choice):
     else:
         timereq(choices, algo_name)
 
+
 ###############################################################
+if __name__ == '__main__':
+    while True:
+        x = input("Enter your own array values? [y/n]: ")
+        if x == 'y':
+            A = list(map(int, input("Enter values: ").split()))
+            options()
+        else:
+            A = create_array()
+            options()
 
-while True:
-    x = input("Enter your own array values? [y/n]: ")
-    if x == 'y':
-        A = list(map(int, input("Enter values: ").split()))
-        options()
-    else:
-        A = create_array()
-        options()
-
-    choice = int(input("Enter your choice: "))
-    if choice != 10: 
-        switch_case(choice)
-    else:
-        break
+        choice = int(input("Enter your choice: "))
+        if choice != 10: 
+            switch_case(choice)
+        else:
+            break

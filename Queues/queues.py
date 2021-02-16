@@ -103,7 +103,8 @@ def switch_case(choice):
 ###############################################################################
 
 
-Q = Queue()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    Q = Queue()
+    while True:
+        choice = options()
+        switch_case(choice)

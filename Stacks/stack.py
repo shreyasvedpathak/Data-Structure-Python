@@ -1,18 +1,19 @@
 import os
 
+
 class Stacks:
     def __init__(self):
         '''
         Initialises a empty list which will be used as Stack array.
         '''
         self._data = []
-    
+
     def __len__(self):
         '''
         Returns length of Stack>
         '''
         return len(self._data)
-    
+
     def isempty(self):
         '''
         Returns True if stack is empty, else False.
@@ -24,7 +25,7 @@ class Stacks:
         Pushes the passed element(e) on the stack.
         '''
         self._data.append(e)
-    
+
     def pop(self):
         '''
         Removes the element on the top and returns it.
@@ -32,7 +33,7 @@ class Stacks:
         if self.isempty():
             print("Stack is Empty")
             return
-        
+
         return self._data.pop()
 
     def top(self):
@@ -44,25 +45,26 @@ class Stacks:
             return
 
         return self._data[-1]
-    
+
     def display(self):
         '''
         Utility function to display the stack.
         '''
         if self.isempty():
-           print("Stack is Empty")
-           return
+            print("Stack is Empty")
+            return
         print("Stack:")
         for item in reversed(self._data):
             print(item)
 
 ###############################################################################
 
+
 def options():
     '''
     Prints Menu for operations
     '''
-    options_list = ['Push', 'Pop', 'Top', 
+    options_list = ['Push', 'Pop', 'Top',
                     'Display Stack', 'Exit']
 
     print("MENU")
@@ -71,6 +73,7 @@ def options():
 
     choice = int(input("Enter choice: "))
     return choice
+
 
 def switch_case(choice):
     '''
@@ -96,9 +99,10 @@ def switch_case(choice):
         import sys
         sys.exit()
 
-###############################################################################
 
-S = Stacks()
-while True:
-    choice = options()
-    switch_case(choice)
+###############################################################################
+if __name__ == '__main__':
+    S = Stacks()
+    while True:
+        choice = options()
+        switch_case(choice)

@@ -249,7 +249,8 @@ def switch_case(choice):
 ###############################################################################
 
 
-DL = DoublyLL()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    DL = DoublyLL()
+    while True:
+        choice = options()
+        switch_case(choice)

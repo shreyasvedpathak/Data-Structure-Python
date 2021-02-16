@@ -252,7 +252,8 @@ def switch_case(choice):
 ###############################################################################
 
 
-L = LinkedList()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    L = LinkedList()
+    while True:
+        choice = options()
+        switch_case(choice)

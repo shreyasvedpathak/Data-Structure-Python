@@ -143,8 +143,8 @@ def switch_case(choice):
 
 ###############################################################################
 
-
-S = StackLL()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    S = StackLL()
+    while True:
+        choice = options()
+        switch_case(choice)
