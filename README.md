@@ -32,3 +32,7 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 
 1. [Queue using inbuilt Python List](Queues/queues.py)
 2. [Queue using Linked List](Queues/queuesLL.py)
+
+### 4. Binary Trees (using Linked List)
+
+1. [Binary Tree](Binary%20Trees/BinaryTree.py)

@@ -1,4 +1,3 @@
-import os
 import sys
 sys.path.append(".")
 from Queues.queuesLL import QueueLL
@@ -19,6 +18,13 @@ class BinaryTree:
         Initialises Root node to None.
         '''
         self._root = None
+        self._count = 0
+
+    def __len__(self):
+        '''
+        Returns the length of Tree.
+        '''
+        return self._count
 
     def createTree(self, node):
         '''
@@ -34,6 +40,7 @@ class BinaryTree:
             curr = _Node(nodeData)
             node._left = curr
             self.createTree(curr)
+            self._count += 1
 
         # os.system('cls')
         position = input(
@@ -43,6 +50,7 @@ class BinaryTree:
             curr = _Node(nodeData)
             node._right = curr
             self.createTree(curr)
+            self._count += 1
 
     def createRoot(self):
         '''
@@ -51,6 +59,7 @@ class BinaryTree:
         rootData = input("Enter data for Root: ")
         self._root = _Node(rootData)
         self.createTree(self._root)
+        self._count += 1
 
     def inorder(self, troot):
         '''
@@ -94,6 +103,21 @@ class BinaryTree:
                 print(t._right._element, end=" ")
                 Q.enqueue(t._right)
 
+    def height(self, troot):
+        '''
+        Utility function to calculate height of the tree.
+        '''
+        if troot:
+            x = self.height(troot._left)
+            y = self.height(troot._right)
+
+            if x > y:
+                return x + 1
+            else:
+                return y + 1
+            
+        return 0
+
 ###############################################################################
 
 
@@ -102,7 +126,8 @@ def options():
     Prints Menu for operations
     '''
     options_list = ['Create Tree', 'Inorder', 'Preorder',
-                    'Postorder', 'Level Order', 'Exit']
+                    'Postorder', 'Level Order', 'Count',
+                    'Height', 'Exit']
 
     print("\nMENU")
     for i, option in enumerate(options_list):
@@ -135,16 +160,21 @@ def switch_case(choice):
         print("Level Order Traversal:")
         bt.levelorder()
     elif choice == 6:
-        import sys
+        print("Number of Nodes: ",len(bt))
+    
+    elif choice == 7:
+        print("Height: ", bt.height(bt._root) - 1)
+
+    elif choice == 8:
         sys.exit()
 
 ###############################################################################
 
-
-bt = BinaryTree()
-while True:
-    choice = options()
-    switch_case(choice)
+if __name__ == '__main__':
+    bt = BinaryTree()
+    while True:
+        choice = options()
+        switch_case(choice)
 
 '''
 MENU
