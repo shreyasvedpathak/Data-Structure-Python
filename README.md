@@ -10,7 +10,7 @@
 
 Find the detailed description on [Index](Sorting%20Algorithms/) page.
 
-- [Sorting Algorithms Code](Sorting%20Algorithms/sortingAlgo.py)
+- [Code](Sorting%20Algorithms/sortingAlgo.py)
 - [Random Numbers for Input](Sorting%20Algorithms/num.txt)
 
 ## Data Structures
@@ -36,3 +36,4 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 ### 4. Binary Trees (using Linked List)
 
 1. [Binary Tree](Binary%20Trees/BinaryTree.py)
+2. [Binary Search Tree](Binary%20Trees/BinarySearchTree.py)
