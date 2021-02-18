@@ -1,6 +1,7 @@
 import time
 import random
 
+
 def selection(A):
     """
     Algo name: Selection Sort
@@ -19,6 +20,7 @@ def selection(A):
         A[i], A[position] = A[position], A[i]
 
 ###############################################################
+
 
 def insertion(A):
     """
@@ -41,6 +43,7 @@ def insertion(A):
 
 ###############################################################
 
+
 def bubble(A):
     """
     Algo name: Bubble Sort
@@ -57,6 +60,7 @@ def bubble(A):
                 A[i], A[i+1] = A[i+1], A[i]
 
 ###############################################################
+
 
 def shell(A):
     """
@@ -83,6 +87,7 @@ def shell(A):
 
 ###############################################################
 
+
 def merge(A, l, m, r):
     """
     Algo name: Merge
@@ -95,7 +100,9 @@ def merge(A, l, m, r):
 
     returns Sorted partial array A
     """
-    i = l; j = m + 1; k = l
+    i = l
+    j = m + 1
+    k = l
     B = [0] * (r + 1)
 
     while i <= m and j <= r:
@@ -109,10 +116,12 @@ def merge(A, l, m, r):
 
     while i <= m:
         B[k] = A[i]
-        i = i + 1; k = k + 1
+        i = i + 1
+        k = k + 1
     while j <= r:
         B[k] = A[j]
-        j = j + 1; k = k + 1
+        j = j + 1
+        k = k + 1
     for x in range(l, r + 1):
         A[x] = B[x]
 
@@ -131,16 +140,19 @@ def mergesort(A, left, right):
         mid = (left + right) // 2
         mergesort(A, left, mid)
         mergesort(A, mid + 1, right)
-        merge(A, left, mid, right) 
+        merge(A, left, mid, right)
+
 
 def merge_driver(A):
     mergesort(A, 0, len(A)-1)
 
 ###############################################################
 
+
 def partition(A, low, high):
     pivot = A[low]
-    i = low + 1; j = high
+    i = low + 1
+    j = high
 
     while True:
         while i <= j and A[i] <= pivot:
@@ -154,6 +166,7 @@ def partition(A, low, high):
             break
     A[low], A[j] = A[j], A[low]
     return j
+
 
 def quicksort(A, low, high):
     """
@@ -170,18 +183,29 @@ def quicksort(A, low, high):
         quicksort(A, low, p - 1)
         quicksort(A, p + 1, high)
 
+
 def quick_driver(A):
     quicksort(A, 0, len(A)-1)
 
 ###############################################################
+
+
 def count(A):
+    """
+    Algo name: Count Sort
+    STABLE
+    input:
+    A -- Array
+    returns sorted array
+    """
     n = len(A)
     maxsize = max(A)
     carray = [0] * (maxsize + 1)
 
     for i in range(n):
         carray[A[i]] = carray[A[i]] + 1
-    i = 0; j = 0
+    i = 0
+    j = 0
     while i < maxsize + 1:
         if carray[i] > 0:
             A[j] = i
@@ -191,6 +215,7 @@ def count(A):
             i = i + 1
 
 ###############################################################
+
 
 def radix(A):
     """
@@ -221,6 +246,31 @@ def radix(A):
 
 ###############################################################
 
+
+def heapsort(A):
+    """
+    Algo name: Heap Sort
+    UNSTABLE
+    input:
+    A -- Array
+    returns sorted array
+    """
+    import sys
+    sys.path.append('.')
+    from Heap.heap import Heap
+
+    n = len(A)
+    heap = Heap(n)
+    for i in range(n):
+        heap.insert(A[i])
+    k = n - 1
+    for _ in range(heap._size):
+        A[k] = heap.deleteMax()
+        k -= 1
+
+###############################################################
+
+
 def timereq(choices, algo_name):
     """
     Utility function to calculate time required(in nanoseconds) to sort the given array.
@@ -232,6 +282,7 @@ def timereq(choices, algo_name):
         print('Time taken by', name, ':', (end - start) * 10 ** 6, "nanoseconds")
 
 ###############################################################
+
 
 def create_array():
     """
@@ -249,22 +300,26 @@ def create_array():
 
 ###############################################################
 
+
 def options():
     '''
     Prints Menu for operations
     '''
-    options_list = ['Selection Sort', 'Insertion Sort', 'Bubble Sort',
-                 'Shell Sort', 'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort',
-                 'Time Required', 'Exit']
+    options_list = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort',
+                    'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort', 'Heap Sort',
+                    'Time Required', 'Exit']
     print("MENU")
     for i, option in enumerate(options_list):
         print(f'{i + 1}. {option}')
 
+
 def switch_case(choice):
-    choices = [selection, insertion, bubble, shell, merge_driver, quick_driver, count, radix]
-    algo_name = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort', 'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort']
-    
-    if choice != 9:
+    choices = [selection, insertion, bubble, shell, merge_driver,
+               quick_driver, count, radix, heapsort]
+    algo_name = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort', 'Merge Sort',
+                 'Quick Sort', 'Count Sort', 'Radix Sort', 'Heap Sort']
+
+    if choice != 10:
         choices[choice-1](A)
         print("Sorted using", algo_name[choice - 1], "\n", A)
     else:
@@ -283,7 +338,7 @@ if __name__ == '__main__':
             options()
 
         choice = int(input("Enter your choice: "))
-        if choice != 10: 
+        if choice != 11:
             switch_case(choice)
         else:
             break
