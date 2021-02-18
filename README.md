@@ -35,6 +35,8 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 
 ### 4. Binary Trees (using Linked List)
 
+Find the detailed description on operations performed [here.](Binary%20Trees/)
+
 1. [Binary Tree](Binary%20Trees/BinaryTree.py)
 2. [Binary Search Tree](Binary%20Trees/BinarySearchTree.py)
 
