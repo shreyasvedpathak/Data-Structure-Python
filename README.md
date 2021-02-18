@@ -37,3 +37,7 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 
 1. [Binary Tree](Binary%20Trees/BinaryTree.py)
 2. [Binary Search Tree](Binary%20Trees/BinarySearchTree.py)
+
+### 5. Heap
+
+1. [Max Heap](Heap/heap.py)
