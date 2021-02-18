@@ -6,6 +6,7 @@ class Heap:
         self._maxsize = maxsize
         self._heap = [-1] * (self._maxsize + 1)
         self._size = 0
+        self._type = 'Max'
 
     def __len__(self):
         '''
@@ -19,9 +20,9 @@ class Heap:
         '''
         return self._size == 0
 
-    def insert(self, e):
+    def insert(self, e, max=True):
         '''
-        Insertion Operation.
+        Insertion Operation for creating a Max Heap(Min Heap if max = False)
         '''
         if self._size == self._maxsize:
             print(f"Max {self._maxsize} elements can be inserted !")
@@ -29,17 +30,25 @@ class Heap:
             self._size += 1
             hi = self._size
 
-            # while child > parent
-            while e > self._heap[hi//2] and hi > 1:
-                self._heap[hi] = self._heap[hi//2]
-                hi = hi//2
+            if max:
+                # while child > parent -- Max Heap
+                while e > self._heap[hi//2] and hi > 1:
+                    self._heap[hi] = self._heap[hi//2]
+                    hi = hi//2
+            else:
+                self._type = 'Min'
+                # while child < parent -- Min Heap
+                while e < self._heap[hi//2] and hi > 1:
+                    self._heap[hi] = self._heap[hi//2]
+                    hi = hi//2
             self._heap[hi] = e
 
-    def max(self):
+    def returnRoot(self):
         '''
-        Returns the maximum element from the heap.
+        Returns the root element from the heap.
+        Maximum element if it was a Max heap, Minimum otherwise.
         '''
-        return self._heap[1]
+        return self._type , self._heap[1]
 
     def deleteMax(self):
         '''
@@ -79,8 +88,9 @@ def options():
     '''
     Prints Menu for operations
     '''
-    options_list = ['Insert an item', 'Insert multiple items',
-                    'Max', 'Delete Max', 'Display', 'Exit']
+    options_list = ['Insert an item [Max]', 'Insert multiple items [Max]',
+                    'Insert an item [Min]', 'Insert multiple items [Min]',
+                    'Maximum / Minimum', 'Delete Max', 'Display', 'Exit']
 
     print("\nMENU")
     for i, option in enumerate(options_list):
@@ -106,15 +116,25 @@ def switch_case(choice):
             hp.insert(elem)
 
     elif choice == 3:
-        print("Max element is: ", hp.max())
+        elem = int(input("Enter an Item: "))
+        hp.insert(elem, max=False)
 
     elif choice == 4:
-        print("Deleted element is: ", hp.deleteMax())
+        A = list(map(int, input("Enter items: ").split()))
+        for elem in A:
+            hp.insert(elem, max=False)
 
     elif choice == 5:
-        hp.display()
+        heapType, value = hp.returnRoot()
+        print(f"{heapType} element is: {value}")
 
     elif choice == 6:
+        print("Deleted element is: ", hp.deleteMax())
+
+    elif choice == 7:
+        hp.display()
+
+    elif choice == 8:
         import sys
         sys.exit()
 
