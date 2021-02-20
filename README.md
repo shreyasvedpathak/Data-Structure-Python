@@ -17,11 +17,11 @@ Find the detailed description on [Index](Sorting%20Algorithms/) page.
 
 ### 1. Linked Lists
 
-Find the detailed description on operations performed [here.](Linked%20List/)
+Find the detailed description on operations performed [here.](LinkedList/)
 
-1. [Linear Linked List](Linked%20List/linkedlist.py)
-2. [Circular Linked List](Linked%20List/circularLL.py)
-3. [Doubly Linked List](Linked%20List/doublyLL.py)
+1. [Linear Linked List](LinkedList/linkedlist.py)
+2. [Circular Linked List](LinkedList/circularLL.py)
+3. [Doubly Linked List](LinkedList/doublyLL.py)
 
 ### 2. Stack
 
@@ -35,11 +35,18 @@ Find the detailed description on operations performed [here.](Linked%20List/)
 
 ### 4. Binary Trees (using Linked List)
 
-Find the detailed description on operations performed [here.](Binary%20Trees/)
+Find the detailed description on operations performed [here.](BinaryTrees/)
 
-1. [Binary Tree](Binary%20Trees/BinaryTree.py)
-2. [Binary Search Tree](Binary%20Trees/BinarySearchTree.py)
+1. [Binary Tree](BinaryTrees/BinaryTree.py)
+2. [Binary Search Tree](BinaryTrees/BinarySearchTree.py)
 
 ### 5. Heap
 
-1. [Max Heap](Heap/heap.py)
+1. [Max-Min Heap](Heap/heap.py)
+
+### 6. Hashing
+
+Find the detailed description on operations performed [here.](Hashing/)
+
+1. [Hashing using Chaining](Hashing/hashingChaining.py)
+2. [Hashing using Linear, Quadractic Probing and Double Hashing](Hashing/hashingStrategies.py)

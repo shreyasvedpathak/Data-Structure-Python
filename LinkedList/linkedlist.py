@@ -1,4 +1,5 @@
 import os
+from typing import NewType
 
 
 class _Node:
@@ -90,6 +91,29 @@ class LinkedList:
             print(f"Added Item at index {index}!\n\n")
         self._size += 1
 
+    def addSorted(self, e):
+        '''
+        Adds passed element at a position that making linked list sorted.
+        '''
+        newest = _Node(e, None)
+
+        if self.isempty():
+            self.addFirst(e)
+        else:
+            curr = prev = self._head
+            while curr and curr._element < e:
+                prev = curr
+                curr = curr._link
+            # if no element is found to be smaller than e, curr will point to head.
+            # that means, it should be the first element.
+            if curr == self._head:
+                self.addFirst(e)
+            else:
+                newest._link = prev._link
+                prev._link = newest
+                self._size += 1
+
+
     def removeFirst(self):
         '''
         Removes element from the beginning of the linked list.
@@ -162,8 +186,6 @@ class LinkedList:
                 print(p._element, end='-->')
                 p = p._link
             print("NULL")
-            print(
-                f"Head : {self._head._element}, Tail : {self._tail._element}")
         else:
             print("Empty")
 
@@ -188,7 +210,7 @@ def options():
     '''
     Prints Menu for operations
     '''
-    options_list = ['Add Last', 'Add First', 'Add Anywhere',
+    options_list = ['Add Last', 'Add First', 'Add Anywhere', 'Insert Sorted',
                     'Remove First', 'Remove Last', 'Remove Anywhere',
                     'Display List', 'Print Size', 'Search', 'Exit']
 
@@ -204,7 +226,6 @@ def switch_case(choice):
     '''
     Switch Case for operations
     '''
-    os.system('cls')
     if choice == 1:
         elem = int(input("Enter Item: "))
         L.addLast(elem)
@@ -221,31 +242,35 @@ def switch_case(choice):
         L.addAnywhere(elem, index)
 
     elif choice == 4:
-        print("Removed Element from First:", L.removeFirst())
+        elem = int(input("Enter Item: "))
+        L.addSorted(elem)
 
     elif choice == 5:
-        print("Removed Element from last:", L.removeLast())
+        print("Removed Element from First:", L.removeFirst())
 
     elif choice == 6:
+        print("Removed Element from last:", L.removeLast())
+
+    elif choice == 7:
         index = int(input("Enter Index: "))
         print(f"Removed Item: {L.removeAnywhere(index)} !\n\n")
-    elif choice == 7:
+    elif choice == 8:
         print("List: ", end='')
         L.display()
         print("\n")
 
-    elif choice == 8:
+    elif choice == 9:
         print("Size:", len(L))
         print("\n")
 
-    elif choice == 9:
+    elif choice == 10:
         key = int(input("Enter item to search: "))
         if L.search(key) >= 0:
             print(f"Item {key} found at index position {L.search(key)}\n\n")
         else:
             print("Item not in the list\n\n")
 
-    elif choice == 10:
+    elif choice == 11:
         import sys
         sys.exit()
 
