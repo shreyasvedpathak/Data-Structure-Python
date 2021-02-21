@@ -15,7 +15,7 @@ Find the detailed description on [Index](Sorting%20Algorithms/) page.
 
 ## Data Structures
 
-### 1. Linked Lists
+### 1. Linked List
 
 Find the detailed description on operations performed [here.](LinkedList/)
 
@@ -33,7 +33,7 @@ Find the detailed description on operations performed [here.](LinkedList/)
 1. [Queue using inbuilt Python List](Queues/queues.py)
 2. [Queue using Linked List](Queues/queuesLL.py)
 
-### 4. Binary Trees (using Linked List)
+### 4. Binary Tree (using Linked List)
 
 Find the detailed description on operations performed [here.](BinaryTrees/)
 
@@ -50,3 +50,7 @@ Find the detailed description on operations performed [here.](Hashing/)
 
 1. [Hashing using Chaining](Hashing/hashingChaining.py)
 2. [Hashing using Linear, Quadractic Probing and Double Hashing](Hashing/hashingStrategies.py)
+
+### 7. Graph
+
+1. [Graph using Adjacency Matrix](Graph/graph.py)
