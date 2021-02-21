@@ -15,7 +15,7 @@ class Queue:
         '''
         Returns True if Queue is empty, otherwise False.
         '''
-        return self.__len__ == 0
+        return len(self._data) == 0
 
     def enqueue(self, e):
         '''

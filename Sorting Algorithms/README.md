@@ -15,3 +15,4 @@ The code also contains a utility function for finding time required to sort the 
 | Count Sort       | 193      |
 | Radix Sort       | 220      |
 | Heap Sort        | 250      |
+| Bucket Sort      | 274      |

@@ -1,7 +1,7 @@
 import os
 
 
-class Stacks:
+class Stack:
     def __init__(self):
         '''
         Initialises a empty list which will be used as Stack array.

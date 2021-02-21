@@ -271,6 +271,35 @@ def heapsort(A):
 ###############################################################
 
 
+def bucket(A):
+    """
+    Algo name: Bucket Sort
+    STABLE
+    input:
+    A -- Array
+    returns sorted array
+    """
+    n = len(A)
+    maximum = max(A)
+    l = []
+    buckets = [l] * 10
+    for i in range(n):
+        index = int((n * A[i]) / (maximum + 1))
+        if len(buckets[index]) == 0:
+            buckets[index] = [A[i]]
+        else:
+            buckets[index].append(A[i])
+    for i in range(10):
+        insertion(buckets[i])
+    k = 0
+    for i in range(10):
+        for j in range(len(buckets[i])):
+            A[k] = buckets[i].pop(0)
+            k = k + 1
+
+###############################################################
+
+
 def timereq(choices, algo_name):
     """
     Utility function to calculate time required(in nanoseconds) to sort the given array.
@@ -307,7 +336,7 @@ def options():
     '''
     options_list = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort',
                     'Merge Sort', 'Quick Sort', 'Count Sort', 'Radix Sort', 'Heap Sort',
-                    'Time Required', 'Exit']
+                    'Bucket Sort', 'Time Required', 'Exit']
     print("MENU")
     for i, option in enumerate(options_list):
         print(f'{i + 1}. {option}')
@@ -315,11 +344,11 @@ def options():
 
 def switch_case(choice):
     choices = [selection, insertion, bubble, shell, merge_driver,
-               quick_driver, count, radix, heapsort]
+               quick_driver, count, radix, heapsort, bucket]
     algo_name = ['Selection Sort', 'Insertion Sort', 'Bubble Sort', 'Shell Sort', 'Merge Sort',
-                 'Quick Sort', 'Count Sort', 'Radix Sort', 'Heap Sort']
+                 'Quick Sort', 'Count Sort', 'Radix Sort', 'Heap Sort', 'Bucket Sort']
 
-    if choice != 10:
+    if choice != 11:
         choices[choice-1](A)
         print("Sorted using", algo_name[choice - 1], "\n", A)
     else:
@@ -338,7 +367,7 @@ if __name__ == '__main__':
             options()
 
         choice = int(input("Enter your choice: "))
-        if choice != 11:
+        if choice != 12:
             switch_case(choice)
         else:
             break

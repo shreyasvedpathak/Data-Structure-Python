@@ -1,6 +1,6 @@
 import sys
 sys.path.append(".")
-from Queues.queuesLL import QueueLL
+from Queue.queueLL import QueueLL
 
 class _Node:
     '''
