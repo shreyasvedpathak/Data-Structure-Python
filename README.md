@@ -25,8 +25,8 @@ Find the detailed description on operations performed [here.](LinkedList/)
 
 ### 2. Stack
 
-1. [Stack using inbuilt Python List](Stacks/stack.py)
-2. [Stack using Linked List](Stacks/stackLL.py)
+1. [Stack using inbuilt Python List](Stack/stack.py)
+2. [Stack using Linked List](Stack/stackLL.py)
 
 ### 3. Queue
 
